@@ -1,0 +1,27 @@
+ABU OTUTO — version 5 prototype, 11 November 2026
+
+Continues the existing version 3 reader and scanned assets.
+
+Implemented and checked with application-logic tests:
+- Home screen first; search by hymn number, English title or Igbo first line.
+- 32 categories transcribed from the printed Order of Hymns.
+- Igbo and English alphabetical sorting.
+- Favorites saved in the current browser, with removal and reload checks.
+- Full hymn index is presented in clear 50-hymn ranges, with Previous and Next controls; all 294 indexed hymns are accessible.
+- Existing animated hymn navigation, grouped continuation scans, separated shared-page hymn views, original scan mode, zoom and title corrections.
+- All 356 original page images retained; 294 hymn records mapped.
+
+PWA implementation added: standalone manifest, icons and service worker.
+The app shell and viewed pages are cached. This is not a full offline download of all hymns. Browser storage can be cleared or evicted. Favorites and corrections remain on the device and do not sync.
+
+OPENING:
+Extract the complete ZIP. Open index.html to use the local reader.
+For installation and service-worker caching, serve this folder through HTTPS (or localhost for development). Opening a file directly does not enable PWA features. Install options depend on the browser.
+
+VERIFICATION LIMITS:
+Application-logic tests passed. Browser preview did not open successfully; layout, actual animation, touch gestures, installability and offline operation have not been verified in a browser. No live site was published: the connected Sites service returned unavailable.
+
+CONTENT LIMITS:
+Igbo titles remain draft transcriptions pending fluent-language proofreading. Optional lyric search uses uncorrected OCR. Read the scans for original lyrics and solfa notation. Hymn 295 appears in the printed index but its song scan is absent; it cannot be supplied from this PDF.
+
+The included REVIEW-NOTES.txt describes the earlier version's content review and source gaps. Its old feature and publication status is superseded by this file.

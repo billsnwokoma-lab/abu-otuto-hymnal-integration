@@ -1,0 +1,17 @@
+CONTENT REVIEW — 3 NOVEMBER 2026
+
+Complete: 356 page images retained; hymn numbers 1–294 mapped to their starting PDF pages; English heading titles compared visually with the scans; all 294 Igbo index first lines transcribed with visual comparison; title and optional draft lyric search added.
+
+Search uses the transcribed title fields. The original scan is always the reading source. Search tolerates omitted diacritics, punctuation and apostrophes, but it cannot compensate for every OCR or transcription error.
+
+OCR observations: The PDF contains only scanned images, with no embedded text layer. OCR confuses dotted vowels, Q/o, mb/m, and musical sol-fa marks with text. Obvious title errors were corrected by comparison with the printed index. The Igbo title transcription remains a draft pending fluent-language and diacritic review; lyric text remains raw OCR and is optional in search. No numerical OCR accuracy percentage is claimed because no independently proofread ground-truth text was supplied.
+
+Navigation observations: Longer songs have continuation scans. One-hymn mode groups these in a single digital view. Hymns 243 and 244 share PDF page 290; hymns 249 and 250 share PDF page 295. Each of these four hymns is now displayed separately using a bounded region of its original scan. Those four regions were visually inspected: all titles, notation and lyrics remain visible. Original-scan mode retains the complete unseparated images. Tests cover both reading modes, grouped continuations, crop coordinates and hymn turns through shared scans. Number 295 in the Igbo index has no matching song page in the supplied PDF; it is reported as a source gap rather than linked to another hymn.
+
+Rights record: The project owner stated that SDA Church Nigeria gave permission to republish the old hymnal in any format. No letter was provided or independently verified. This edition records that authorization and retains the original publisher attribution in the title-page scan.
+
+Remaining before a final public edition:
+1. Fluent Igbo review of spelling, accents and first-line transcription. Use the on-page title correction tool and export changes, or review song-index.csv.
+2. Resolve the unmatched hymn 295 index reference using the physical book or another scan.
+3. Visually test the reader on a phone and desktop browser, including page turning, zoom and touch gestures. Application logic and asset checks passed, but automated visual preview was blocked.
+4. Publish the reviewed files through an available hosting service when ready. No website was published in this session because the connected Sites tools were unavailable.

@@ -1,0 +1,36 @@
+ABU OTUTO DIGITAL SONGBOOK — ONE HYMN AT A TIME, VERSION 3
+
+Open index.html in Edge, Chrome, Firefox or Safari. Keep the pages folder beside it. No installation or internet connection is needed.
+
+Includes all 356 original PDF page scans, animated turning, swipe and keyboard navigation, zoom, PDF page jump, previous/next hymn navigation, and shortcuts to the printed indexes.
+
+SEARCH
+Search all 294 included song numbers, English titles, and Igbo first lines. An exact number, such as 90, finds that hymn. You can omit accents and apostrophes: Kpokota finds Kpọkọta. English titles and starting pages were checked against the scanned headings. Igbo first lines were transcribed with visual comparison to the printed Igbo index; they still need fluent Igbo review, especially accents and older spelling. Some first lines are abbreviated in the printed index.
+
+Check "Include draft lyric text" to search OCR text from all hymn pages, including continuation pages. Lyrics have not been fully proofread; this search can miss words or produce an incorrect match. It does not read or play the musical notation.
+
+READING LAYOUT
+"One hymn at a time" is the default reading mode. Each hymn has its own digital view. All original scans belonging to a longer hymn are grouped there; scroll down for continuation pages. Previous/Next, arrow keys and horizontal swipes move between hymns.
+
+The two pairs that originally shared scans (243/244 and 249/250) are displayed as four separate song views. Their scan regions were checked visually to retain each complete title, musical notation and lyrics. The source images are kept intact; the reader shows the appropriate region.
+
+Choose "Original scans" to browse the book as printed. Previous/Next then moves one original PDF page at a time. A PDF page jump or a printed-index shortcut also opens original-scan mode. Selecting a song from search returns to one-hymn mode. PDF page numbers differ from hymn numbers.
+
+This is one hymn per digital view, rather than squeezing every long hymn onto a single printed sheet. Longer songs retain readable notation on their continuation scans.
+
+TITLE CORRECTIONS
+Open a hymn and select "Correct title". Compare the English and Igbo text with the original scan, then save. Corrections are saved only in this browser on this device, and the scan stays intact. Export title corrections under "Proofreading & downloads" to keep a JSON copy that can be sent back for incorporation. Moving the folder, clearing browser data or changing browsers may make locally stored changes unavailable. The Restore button removes the selected hymn's local correction.
+
+song-index.csv contains the complete 294-song index, scanned-page mapping and draft Igbo first lines for review. The file uses UTF-8 with a signature for compatibility with Excel.
+
+SOURCE GAP
+The Igbo printed index references hymn 295 (Agam’abu akụkọ ebube). The supplied scan's numbered hymn pages end at 294. There is no matching numbered song page for 295 in this PDF. A missing scan or a printed index error needs to be resolved before that entry can be linked.
+
+Source: Abu Otuto SDA Hymnal.pdf supplied by the project owner. The displayed pages are JPEG derivatives extracted from the PDF. The printed layout and notation are preserved; notation is not reconstructed or interpreted by OCR. Scanning blemishes, handwriting and faint print are retained. The original supplied PDF is unchanged.
+
+The owner confirmed permission from SDA Church Nigeria to republish in any format. This records the owner's statement; no permission letter was supplied or independently verified.
+
+VALIDATION AND PUBLICATION
+Checks passed for all 294 song records, all 356 page files, mapped content-page coverage, English/Igbo/number search, navigation, continuation pages, shared pages, boundaries, zoom state, and correction save/restore/reload. Browser layout and touch gesture testing remains unverified because the browser tool blocked local-file previews. These checks do not establish flawless Igbo transcription or OCR accuracy.
+
+The Sites service was unavailable in this session, so no hosted website was published. This is a local, portable web prototype. No online account, installation, server or internet connection is needed to read it after extraction. It contains no external scripts or analytics.
