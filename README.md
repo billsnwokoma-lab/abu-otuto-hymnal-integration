@@ -1,35 +1,36 @@
-# Abu Otuto Digital Hymnal — Integration Package
+# Abu Otuto Digital Hymnal — Member Sharing App
 
-Standalone package for church websites, mobile apps, and WebViews. This repository is independent of The Bible Worker site; a church developer can copy it into another app without access to the owner’s GitHub account.
+A self-contained Progressive Web App (PWA) for sharing the Abu Otuto Igbo SDA Hymnal with members.
 
-## Version 2 — latest updates
+This member edition has no link back to the Bible Worker website or a church-app home page. It opens and runs as its own digital hymnbook.
 
-- 294 searchable hymns and 356 original scanned pages, preserving Igbo lyrics and solfa notation
-- Home-screen **Find a hymn** field above the hymn categories
-- Enter `4` or `Hymn 4`, then press Enter, to open that hymn directly
-- Selected hymns open in a closeable pop-up reader
-- Search by hymn number, Igbo/English title, or first line
-- Categories, alphabetical browsing, favorites, original-scan reader, and offline PWA support
-- Configurable **← Church app home** link, defaulting to `/`
+## Included
 
-## Install in a church app
+- 294 hymn entries and the original 356 scanned hymnbook pages
+- Original Igbo lyrics and solfa notation preserved in the page images
+- Search by hymn number, English title, Igbo title, or first line
+- Type `4` or `Hymn 4`, then press Enter, to open the hymn
+- Hymn categories and alphabetical browsing
+- A pop-up hymn reader for selected hymns
+- Favourites saved on the member's device
+- Installable/offline PWA support
 
-1. Download this repository as a ZIP, or clone it.
-2. Copy the **entire** folder into the church app’s web assets or web route.
-3. Keep `pages/` beside `index.html`; it contains every original scan.
-4. Serve it at a route such as `/abu-otuto/`, or load `index.html` in a WebView.
-5. If the church’s home screen is not `/`, edit `host-home-link.js` and change `link.href`.
+## Share with members
 
-The package is static HTML, CSS, JavaScript, and image files—no server database or user account is required.
+Download the ZIP from the **member-sharing** branch and give it to the person who will host it. They can upload the folder contents to any standard web host or serve it from the church website.
 
-## Test checklist
+No GitHub account access is required to use this package.
 
-- Enter `Hymn 4` in the search field and press Enter.
-- Confirm the hymn opens in a pop-up reader and that **Close** returns to the home screen.
-- Confirm `pages/1.jpg` and `pages/356.jpg` load.
-- Confirm **← Church app home** reaches the desired church-app route.
-- For web deployments, test offline access after the first successful load.
+## Hosting
 
-## Distribution note
+The package is static: it has no database or server setup requirement. Keep all files and folders together, particularly `pages/`, `assets/`, `songbook-data.js`, `app.js`, and `sw.js`.
 
-The package owner has confirmed permission to reproduce and distribute this hymnal. The scanned pages remain the source of truth; draft Igbo search text should be verified against the scans.
+For best PWA and offline behavior, host it through HTTPS.
+
+## Basic checks
+
+1. Open the app.
+2. Search for `4` and press Enter.
+3. Confirm the hymn appears in the pop-up reader.
+4. Use **Close** to return to the hymn list.
+5. Use **Install app** from a supported browser if desired.
