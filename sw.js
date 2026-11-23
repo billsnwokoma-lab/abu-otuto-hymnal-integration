@@ -1,10 +1,10 @@
-const CACHE = "abu-otuto-standalone-v1";
+const CACHE = "abu-otuto-standalone-v2";
 const shell = [
   "./",
   "index.html",
   "app.js",
-  "songbook-data.js",
   "host-home-link.js",
+  "songbook-data.js",
   "reader-sizing.js",
   "manifest.webmanifest",
   "icon.svg",
