@@ -12,9 +12,14 @@ function correction(h){const c=corrections[h.n];return c&&typeof c==='object'?c:
 function english(h){return typeof correction(h).english==='string'?correction(h).english:h.t;}
 function igbo(h){return typeof correction(h).igbo==='string'?correction(h).igbo:h.igbo.map(x=>x.text).join(' / ');}
 function norm(s){return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[’‘`']/g,'').replace(/[^\p{L}\p{N}]+/gu,' ').trim();}
+function requestedHymn(q){
+ const match=String(q).trim().match(/^(?:hymn\s*)?(\d+)$/i);
+ return match?hymns.find(h=>h.n===Number(match[1]))||null:null;
+}
 function matches(h,q,lyrics=false){
  const raw=String(q).trim();
- if(/^\d+$/.test(raw))return h.n===Number(raw);
+ const direct=requestedHymn(raw);
+ if(direct)return h.n===direct.n;
  const tokens=norm(raw).split(/\s+/).filter(Boolean);
  const haystack=norm(english(h)+' '+igbo(h)+(lyrics?' '+h.ocr:''));
  return tokens.every(t=>haystack.includes(t));
@@ -34,7 +39,7 @@ function list(){
   const b=document.createElement('button');b.className='song';
   if(h.n===selected){b.classList.add('active');b.setAttribute('aria-current','true');}
   b.append(textElement('b','HYMN '+h.n),textElement('span',english(h)),textElement('span',igbo(h),'igbo'));
-  b.lastChild.lang='ig';b.onclick=()=>{setHome(false);viewMode='song';$('#view-mode').value=viewMode;go(h.p,h.n);};return b;
+  b.lastChild.lang='ig';b.onclick=()=>openHymn(h,true);return b;
  }));
  const missing=String($('#search').value).trim()==='295';
  $('#count').textContent=missing?'Hymn 295 appears in the printed index, but its song page is missing from this PDF.':items.length+' of 294 hymns'+(items.length?'':' — try fewer words or the printed index.');
@@ -94,7 +99,15 @@ function moveHymn(delta){const h=selectedHymn();if(h){const target=hymns.find(x=
 function turn(delta){if(viewMode==='song'&&selectedHymn())moveHymn(delta);else go(current+delta);}
 $('#view-mode').value=viewMode;
 $('#view-mode').onchange=()=>{viewMode=$('#view-mode').value;showHymn();renderSong();};
-$('#search').oninput=()=>{indexPage=0;list();};$('#lyrics').onchange=()=>{indexPage=0;list();};
+function openRequestedHymn(){
+ const h=requestedHymn($('#search').value);
+ if(!h)return false;
+ openHymn(h,true);return true;
+}
+$('#search').oninput=()=>{indexPage=0;list();};
+$('#search').onsearch=()=>openRequestedHymn();
+$('#search').onkeydown=e=>{if(e.key==='Enter'&&openRequestedHymn())e.preventDefault();};
+$('#lyrics').onchange=()=>{indexPage=0;list();};
 indexPrevious.onclick=()=>{indexPage=Math.max(0,indexPage-1);list();};indexNext.onclick=()=>{indexPage++;list();};
 $('#prev').onclick=()=>turn(-1);$('#next').onclick=()=>turn(1);
 $('#prev-hymn').onclick=()=>moveHymn(-1);$('#next-hymn').onclick=()=>moveHymn(1);
@@ -102,6 +115,7 @@ $('#jump').onsubmit=e=>{e.preventDefault();viewMode='scan';$('#view-mode').value
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>{viewMode='scan';$('#view-mode').value=viewMode;go(b.dataset.page);});
 $('#zoom').onclick=()=>{const zoomed=page.classList.toggle('zoom');$('#book-content').classList.toggle('zoom');$('#zoom').textContent=zoomed?'Fit page':'Zoom in';$('#zoom').setAttribute('aria-pressed',String(zoomed));};
 document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'&&document.body.classList.contains('popup-reader')){e.preventDefault();setReaderPopup(false);setHome(true);return;}
  if(/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||e.ctrlKey||e.altKey||e.metaKey)return;
  if(e.key==='ArrowRight'){e.preventDefault();turn(1);}
  if(e.key==='ArrowLeft'){e.preventDefault();turn(-1);}
@@ -137,11 +151,22 @@ $('#reset-title').onclick=()=>{
 let favorites=[];try{const f=JSON.parse(localStorage.getItem('abu-favorites-v1')||'[]');if(Array.isArray(f))favorites=[...new Set(f.filter(n=>Number.isInteger(n)&&n>=1&&n<=294))];}catch{}
 let categoryFilter=null,favoritesOnly=false;
 function setHome(home){document.body.classList.toggle('home',home);$('#home').hidden=!home;}
+function setReaderPopup(open){
+ if(open)setHome(false);
+ document.body.classList.toggle('popup-reader',open);
+ $('#close-reader').hidden=!open;
+ document.body.style.overflow=open?'hidden':'';
+}
+function openHymn(h,popup=false){
+ viewMode='song';$('#view-mode').value=viewMode;go(h.p,h.n);
+ if(popup)setReaderPopup(true);else setReaderPopup(false);
+}
 function updateFavorite(){const h=selectedHymn();$('#favorite').disabled=!h;const saved=h&&favorites.includes(h.n);$('#favorite').textContent=saved?'Remove favorite':'Save favorite';$('#favorite').setAttribute('aria-pressed',String(!!saved));}
 $('#favorite').onclick=()=>{const h=selectedHymn();if(!h)return;const next=favorites.includes(h.n)?favorites.filter(n=>n!==h.n):[...favorites,h.n];try{localStorage.setItem('abu-favorites-v1',JSON.stringify(next));favorites=next;updateFavorite();list();}catch{$('#save-message').textContent='Favorites could not be saved. Allow browser storage and try again.';}};
 function filter(category,fav=false){categoryFilter=category;favoritesOnly=fav;indexPage=0;$('#search').value='';$('#filter-label').textContent=fav?'Favorites':category?category[2]:'';list();}
-$('#home-button').onclick=()=>{setHome(true);filter(null);};
-$('#open-book').onclick=()=>setHome(false);
+$('#close-reader').onclick=()=>{setReaderPopup(false);setHome(true);};
+$('#home-button').onclick=()=>{setReaderPopup(false);setHome(true);filter(null);};
+$('#open-book').onclick=()=>{setReaderPopup(false);setHome(false);};
 $('#favorites-button').onclick=()=>{setHome(true);filter(null,true);};
 $('#clear-filter').onclick=()=>filter(null);
 $('#sort').onchange=()=>{indexPage=0;list();};
